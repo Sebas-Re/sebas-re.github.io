@@ -4,9 +4,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description"
-    content="Portfolio de Sebastian Re, analista SOC L1 en formacion y desarrollador full-stack.">
-  <title>Sebastian Re | SOC & Software</title>
+  <meta name="description" data-i18n-attr="content:meta.desc"
+    content="Portfolio de Sebastián Ré, analista SOC L1 en formación y desarrollador full-stack.">
+  <title data-i18n="meta.title">Sebastián Ré | SOC & Software</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -165,6 +165,43 @@
 
     .nav {
       text-shadow: 0 1px 6px #0b262299
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 28px
+    }
+
+    .lang {
+      display: flex;
+      padding: 3px;
+      border: 1.5px solid #f4fff9;
+      border-radius: 999px;
+      background: #0b26223d
+    }
+
+    .lang button {
+      border: 0;
+      border-radius: 999px;
+      padding: 5px 11px 4px;
+      background: transparent;
+      color: inherit;
+      font: 500 .8rem var(--head);
+      letter-spacing: .12em;
+      cursor: pointer;
+      transition: background .2s, color .2s
+    }
+
+    .lang button[aria-pressed="true"] {
+      background: var(--mist);
+      color: var(--teal-ink);
+      text-shadow: none
+    }
+
+    .lang button:focus-visible {
+      outline: 2px solid var(--pink);
+      outline-offset: 2px
     }
 
     .nav-links a {
@@ -443,11 +480,13 @@
       text-transform: uppercase;
       padding: 5px 10px;
       border-radius: 999px;
-      border: 1px solid #f4fff980
+      border: 1px solid #f4fff980;
+      background: #fffaf5eb;
+      color: var(--coral-ink)
     }
 
     a.tag:hover {
-      background: #ffffff26
+      background: #fff
     }
 
     .toolbox {
@@ -662,6 +701,10 @@
         display: none
       }
 
+      .nav-right {
+        gap: 0
+      }
+
       .scene {
         padding: 80px 0
       }
@@ -747,28 +790,37 @@
 
 <body>
   <div class="page">
-    <nav class="nav" aria-label="Navegacion principal"><a class="mark" href="#inicio">Sebastián Ré<span>.</span></a>
-      <div class="nav-links"><a href="#sobre-mi">Sobre mi</a><a href="#proyectos">Proyectos</a><a
-          href="#formacion">Formacion</a><a href="#contacto">Contacto</a></div>
+    <nav class="nav" aria-label="Navegación principal" data-i18n-attr="aria-label:nav.label"><a class="mark"
+        href="#inicio">Sebastián Ré<span>.</span></a>
+      <div class="nav-right">
+        <div class="nav-links"><a href="#sobre-mi" data-i18n="nav.about">Sobre mí</a><a href="#proyectos"
+            data-i18n="nav.projects">Proyectos</a><a href="#formacion" data-i18n="nav.training">Formación</a><a
+            href="#contacto" data-i18n="nav.contact">Contacto</a></div>
+        <div class="lang" role="group" aria-label="Idioma" data-i18n-attr="aria-label:lang.label"><button type="button"
+            data-set-lang="es" lang="es" aria-pressed="true">ES</button><button type="button" data-set-lang="en"
+            lang="en" aria-pressed="false">EN</button></div>
+      </div>
     </nav>
     <main>
       <header class="scene hero" id="inicio">
         <div class="wrap">
           <div class="hero-copy">
             <p class="ribbon dark">Tigre, Buenos Aires / Argentina</p>
-            <h1>Leo señales.<br>Construyo <em>soluciones.</em></h1>
-            <p class="intro">Soy Sebastián Ré, analista SOC L1 en formación y desarrollador full-stack. Me gusta
+            <h1 data-i18n="hero.title">Leo señales.<br>Construyo <em>soluciones.</em></h1>
+            <p class="intro" data-i18n="hero.intro">Soy Sebastián Ré, analista SOC L1 en formación y desarrollador
+              full-stack. Me gusta
               encontrar patrones entre el ruido, ya sea en un log, un sistema o una buena taza de café. Orientado a
               resultados y al aprendizaje continuo.</p>
-            <div class="actions"><a class="button primary" href="#proyectos">Ver proyectos</a><a class="button"
-                href="assets/CV_SebastianRe.pdf" target="_blank">Ver CV</a><a class="button"
+            <div class="actions"><a class="button primary" href="#proyectos" data-i18n="hero.projects">Ver
+                proyectos</a><a class="button" href="assets/CV_SebastianRe.pdf" target="_blank" data-i18n="hero.cv"
+                data-i18n-attr="href:hero.cvHref">Ver CV</a><a class="button"
                 href="https://www.linkedin.com/in/sebastian-re-dev/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
             </div>
           </div>
         </div>
         <div class="status">
-          <div><b>SOC L1</b><span>en formación<br>y siempre curioso</span></div>
-        </div><img class="plant" src="assets/oscularia-deltoides-hero.png"
+          <div><b>SOC L1</b><span data-i18n="hero.status">en formación<br>y siempre curioso</span></div>
+        </div><img class="plant" data-i18n-attr="alt:hero.plantAlt" src="assets/oscularia-deltoides-hero.png"
           alt="Rama de Oscularia deltoides con dos flores rosadas" width="1423" height="1105">
       </header>
       <section class="scene perfil" id="sobre-mi">
@@ -778,18 +830,22 @@
             src="assets/deco-taza.svg" alt="" width="240" height="270" loading="lazy"></div>
         <div class="wrap about">
           <div>
-            <p class="ribbon">01 / Perfil</p>
-            <h2 class="section-title">Tecnología con mirada humana.</h2>
+            <p class="ribbon" data-i18n="about.kicker">01 / Perfil</p>
+            <h2 class="section-title" data-i18n="about.title">Tecnología con mirada humana.</h2>
           </div>
           <div>
-            <p class="about-copy">Combino formación en programación con práctica enfocada en operaciones de seguridad.
+            <p class="about-copy" data-i18n="about.copy">Combino formación en programación con práctica enfocada en
+              operaciones de seguridad.
               Mi objetivo es aportar criterio, curiosidad y orden en la detección e investigación de incidentes, y en el
               desarrollo backend de soluciones útiles.</p>
             <div class="facts">
               <div class="fact"><strong>Base</strong><span>Tigre, Buenos Aires</span></div>
-              <div class="fact"><strong>Enfoque</strong><span>SOC, SIEM y desarrollo backend</span></div>
-              <div class="fact"><strong>Idioma</strong><span>Español nativo · Inglés B2</span></div>
-              <div class="fact"><strong>Próximo norte</strong><span>Especialización en DFIR</span></div>
+              <div class="fact"><strong data-i18n="about.focus">Enfoque</strong><span data-i18n="about.focusValue">SOC,
+                  SIEM y desarrollo backend</span></div>
+              <div class="fact"><strong data-i18n="about.lang">Idioma</strong><span data-i18n="about.langValue">Español
+                  nativo · Inglés B2</span></div>
+              <div class="fact"><strong data-i18n="about.next">Próximo norte</strong><span
+                  data-i18n="about.nextValue">Especialización en DFIR</span></div>
             </div>
           </div>
         </div>
@@ -800,44 +856,49 @@
         <div class="deco deco-r" data-speed=".1" style="--top:56%;--w:200px" aria-hidden="true"><img
             src="assets/deco-haworthia.svg" alt="" width="220" height="300" loading="lazy"></div>
         <div class="wrap">
-          <p class="ribbon">02 / Laboratorios & proyectos</p>
-          <h2 class="section-title">Investigar, documentar, mejorar.</h2>
+          <p class="ribbon" data-i18n="proj.kicker">02 / Laboratorios & proyectos</p>
+          <h2 class="section-title" data-i18n="proj.title">Investigar, documentar, mejorar.</h2>
           <div class="project-grid">
             <article class="project"><span class="project-icon">⌁</span>
-              <h3>Elastic SIEM en Ubuntu</h3>
-              <p>Despliegue de Elasticsearch, Kibana y Logstash; recolección con Elastic Agent y análisis de logs web
+              <h3 data-i18n="proj.1.title">Elastic SIEM en Ubuntu</h3>
+              <p data-i18n="proj.1.text">Despliegue de Elasticsearch, Kibana y Logstash; recolección con Elastic Agent y
+                análisis de logs web
                 para identificar intentos de login fallidos y sondeos a rutas sensibles.</p>
               <div class="tags"><span class="tag">Elastic Stack</span><span class="tag">Kibana</span><span
                   class="tag">Linux</span></div>
             </article>
             <article class="project"><span class="project-icon">◈</span>
-              <h3>Pentest Active Directory</h3>
-              <p>Proyecto final sobre un entorno Windows Server 2016: reconocimiento, explotación controlada, auditoría
+              <h3 data-i18n="proj.2.title">Pentest Active Directory</h3>
+              <p data-i18n="proj.2.text">Proyecto final sobre un entorno Windows Server 2016: reconocimiento,
+                explotación controlada, auditoría
                 de identidades e informe técnico-ejecutivo con criticidad CVSS y mitigaciones.</p>
               <div class="tags"><span class="tag">Active Directory</span><span class="tag">Nmap</span><span
                   class="tag">Impacket</span></div>
             </article>
             <article class="project"><span class="project-icon">{ }</span>
-              <h3>Desarrollo freelance</h3>
-              <p>Catálogo digital web y bot de Discord en Python integrado con la API de OpenAI. Trabajo con APIs,
+              <h3 data-i18n="proj.3.title">Desarrollo freelance</h3>
+              <p data-i18n="proj.3.text">Catálogo digital web y bot de Discord en Python integrado con la API de OpenAI.
+                Trabajo con APIs,
                 automatización y desarrollo backend de soluciones enfocadas en necesidades reales.</p>
               <div class="tags"><span class="tag">Python</span><span class="tag">JavaScript</span><span
                   class="tag">Backend</span><span class="tag">APIs</span></div>
             </article>
             <article class="project"><span class="project-icon">↗</span>
-              <h3>Más en GitHub</h3>
-              <p>Explorá mis repositorios y avances: programación, automatización y aprendizaje continuo con una mirada
+              <h3 data-i18n="proj.4.title">Más en GitHub</h3>
+              <p data-i18n="proj.4.text">Explorá mis repositorios y avances: programación, automatización y aprendizaje
+                continuo con una mirada
                 práctica.</p>
-              <div class="tags"><a class="tag" href="https://github.com/Sebas-Re" target="_blank" rel="noreferrer">Abrir
-                  GitHub ↗</a></div>
+              <div class="tags"><a class="tag" href="https://github.com/Sebas-Re" target="_blank" rel="noreferrer"
+                  data-i18n="proj.4.link">Abrir GitHub ↗</a></div>
             </article>
           </div>
         </div>
       </section>
       <section class="scene toolbox" aria-labelledby="stack-title">
         <div class="wrap">
-          <p class="ribbon">03 / Caja de herramientas</p>
-          <h2 class="section-title" id="stack-title">Defensa, código y café para resolver lo complejo.</h2>
+          <p class="ribbon" data-i18n="tools.kicker">03 / Caja de herramientas</p>
+          <h2 class="section-title" id="stack-title" data-i18n="tools.title">Defensa, código y café para resolver lo
+            complejo.</h2>
           <div class="skills"><span class="skill">Elastic SIEM</span><span class="skill">Wazuh</span><span
               class="skill">Wireshark</span><span class="skill">Burp Suite</span><span class="skill">Nmap</span><span
               class="skill">Metasploit</span><span class="skill">Python</span><span class="skill">PowerShell</span><span
@@ -850,36 +911,37 @@
         <div class="deco deco-r" data-speed=".12" style="--top:18%;--w:200px" aria-hidden="true"><img
             src="assets/deco-moka.svg" alt="" width="220" height="330" loading="lazy"></div>
         <div class="wrap">
-          <p class="ribbon">04 / Aprendizaje continuo</p>
-          <h2 class="section-title">Credenciales y formación.</h2>
+          <p class="ribbon" data-i18n="cred.kicker">04 / Aprendizaje continuo</p>
+          <h2 class="section-title" data-i18n="cred.title">Credenciales y formación.</h2>
           <div class="credentials"><a class="credential"
               href="https://app.letsdefend.io/my-rewards/detail/60266dca-1ca3-4d4e-8274-9a7214accb05" target="_blank"
-              rel="noreferrer"><span class="issuer">LetsDefend</span><b>SIEM 101</b><small>Septiembre 2026
-                ↗</small></a><a class="credential"
+              rel="noreferrer"><span class="issuer">LetsDefend</span><b>SIEM 101</b><small
+                data-i18n="cred.sep">Septiembre 2026 ↗</small></a><a class="credential"
               href="https://app.letsdefend.io/my-rewards/detail/d8c3a8af-58e8-4926-a758-13941b865caf" target="_blank"
-              rel="noreferrer"><span class="issuer">LetsDefend</span><b>SOC Member</b><small>Septiembre 2026
-                ↗</small></a><a class="credential"
+              rel="noreferrer"><span class="issuer">LetsDefend</span><b>SOC Member</b><small
+                data-i18n="cred.sep">Septiembre 2026 ↗</small></a><a class="credential"
               href="https://app.letsdefend.io/my-rewards/detail/bce6a7a4-d63f-4bd7-b7ae-47bc9305ea67" target="_blank"
-              rel="noreferrer"><span class="issuer">LetsDefend</span><b>Phishing Expert</b><small>Septiembre 2026
-                ↗</small></a><a class="credential"
+              rel="noreferrer"><span class="issuer">LetsDefend</span><b>Phishing Expert</b><small
+                data-i18n="cred.sep">Septiembre 2026 ↗</small></a><a class="credential"
               href="https://app.letsdefend.io/my-rewards/detail/9415019a-7fdf-4142-96f6-097c33291a58" target="_blank"
-              rel="noreferrer"><span class="issuer">LetsDefend</span><b>Incident Management</b><small>Octubre 2026
-                ↗</small></a><a class="credential"
+              rel="noreferrer"><span class="issuer">LetsDefend</span><b>Incident Management</b><small
+                data-i18n="cred.oct">Octubre 2026 ↗</small></a><a class="credential"
               href="https://app.letsdefend.io/my-rewards/detail/e02ba0ee-7927-47a6-9479-709f64771bae" target="_blank"
-              rel="noreferrer"><span class="issuer">LetsDefend</span><b>Windows Incident Response</b><small>Octubre 2026
-                ↗</small></a><a class="credential"
+              rel="noreferrer"><span class="issuer">LetsDefend</span><b>Windows Incident Response</b><small
+                data-i18n="cred.oct">Octubre 2026 ↗</small></a><a class="credential"
               href="https://app.aluracursos.com/immersion/certificate/997bfe88-19fa-4a44-8e54-57489e3fe732"
               target="_blank" rel="noreferrer"><span class="issuer">Alura Latam</span><b>Agentes de IA para
-                Negocios</b><small>Octubre 2026 ↗</small></a></div>
+                Negocios</b><small data-i18n="cred.oct">Octubre 2026 ↗</small></a></div>
         </div>
       </section>
       <section class="scene contact" id="contacto">
         <div class="deco deco-l" data-speed=".1" style="--top:30%;--w:220px" aria-hidden="true"><img
             src="assets/deco-echeveria-lila.svg" alt="" width="240" height="230" loading="lazy"></div>
         <div class="wrap">
-          <p class="ribbon dark">05 / Conversemos</p>
-          <h2 class="section-title">¿Tenés un desafío que merece una mirada atenta?</h2>
-          <p>Estoy abierto a oportunidades junior en ciberseguridad y desarrollo backend, además de proyectos y
+          <p class="ribbon dark" data-i18n="contact.kicker">05 / Conversemos</p>
+          <h2 class="section-title" data-i18n="contact.title">¿Tenés un desafío que merece una mirada atenta?</h2>
+          <p data-i18n="contact.text">Estoy abierto a oportunidades junior en ciberseguridad y desarrollo backend,
+            además de proyectos y
             conversaciones interesantes.</p>
           <div class="contact-links"><a class="orb" href="mailto:sebastian.re1945@gmail.com"><span class="orb-ico"><svg
                   viewBox="0 0 24 24" aria-hidden="true">
@@ -896,6 +958,7 @@
       <div class="dots" aria-hidden="true"><i></i><i></i><i></i></div><span>© 2026 Sebastián Ré</span>
     </footer>
   </div>
+  <script src="assets/i18n.js"></script>
   <script>
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       const items = document.querySelectorAll('.scene:not(.hero) .wrap > *, .project, .credential');
