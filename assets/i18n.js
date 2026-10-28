@@ -12,7 +12,7 @@
     'nav.contact': 'Contact',
     'lang.label': 'Language',
     'hero.title': 'I read signs.<br>I build <em>solutions.</em>',
-    'hero.intro': 'I’m Sebastián Ré, a SOC L1 analyst in training and a full-stack developer. I like finding patterns in the noise, whether in a log, a system or a good cup of coffee. Results-driven and committed to continuous learning.',
+    'hero.intro': 'I’m Sebastián Ré, a SOC L1 analyst in training and a full-stack developer. I like finding patterns in the noise, whether in a log, a system, or a good cup of coffee. Results-driven and committed to continuous learning.',
     'hero.projects': 'See projects',
     'hero.cv': 'View CV',
     'hero.cvHref': 'assets/CV_SebastianRe_EN.pdf',
