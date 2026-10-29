@@ -463,7 +463,8 @@ a {
 .project-dialog {
     width: min(1000px, calc(100% - 32px));
     max-width: none;
-    max-height: min(88vh, 900px);
+    height: min(88vh, 900px);
+    max-height: calc(100vh - 32px);
     padding: 0;
     overflow: hidden;
     border: 1px solid #ffffff80;
@@ -471,6 +472,11 @@ a {
     background: var(--mist);
     color: var(--teal-ink);
     box-shadow: 0 28px 80px #071d19a6
+}
+
+.project-dialog[open] {
+    display: flex;
+    flex-direction: column
 }
 
 .project-dialog::backdrop {
@@ -525,7 +531,8 @@ a {
 }
 
 .project-dialog-body {
-    max-height: calc(88vh - 105px);
+    flex: 1;
+    min-height: 0;
     overflow-y: auto;
     padding: 28px 32px 32px
 }
@@ -537,6 +544,8 @@ a {
 }
 
 .project-gallery figure {
+    display: flex;
+    flex-direction: column;
     min-width: 0;
     margin: 0;
     overflow: hidden;
@@ -547,12 +556,18 @@ a {
 .project-gallery img {
     display: block;
     width: 100%;
-    max-height: 58vh;
-    object-fit: contain
+    height: clamp(200px, 36vh, 420px);
+    flex: 0 0 auto;
+    object-fit: contain;
+    background: #fff
 }
 
 .project-gallery figcaption {
-    padding: 10px 14px;
+    display: flex;
+    flex: 1;
+    align-items: center;
+    min-height: 64px;
+    padding: 12px 14px;
     color: #31574f;
     font-size: .9rem
 }
@@ -901,12 +916,20 @@ footer {
     }
 
     .project-dialog-body {
-        max-height: calc(88vh - 90px);
         padding: 20px
     }
 
     .project-gallery {
         grid-template-columns: 1fr
+    }
+
+    .project-gallery img {
+        height: clamp(180px, 32vh, 320px)
+    }
+
+    .project-gallery figcaption {
+        min-height: 64px;
+        padding: 12px 14px
     }
 
     .contact-links {
