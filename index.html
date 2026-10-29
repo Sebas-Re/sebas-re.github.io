@@ -154,7 +154,24 @@
               <div class="tags"><span class="tag">Python</span><span class="tag">Java</span><span
                   class="tag">Full-Stack</span><span class="tag">C#</span></div>
               <span class="project-action" data-i18n="proj.viewGallery">Ver imágenes ↗</span>
-              <template class="project-gallery"></template>
+              <template class="project-gallery">
+                <figure>
+                  <img src="assets/projects/PcBoosterStore/PcBoosterStore1.png"
+                    alt="Catálogo E-Commerce web desarrollado en C#">
+                  <figcaption>Catálogo E-Commerce web desarrollado en C#.</figcaption>
+                </figure>
+                <figure>
+                  <img src="assets/projects/PcBoosterStore/PcBoosterStore2.png"
+                    alt="Dashboard de administración del E-Commerce.">
+                  <figcaption>Dashboard de administración del E-Commerce.</figcaption>
+                </figure>
+
+                <figure>
+                  <img src="assets/projects/PcBoosterStore/PcBoosterStore3.png"
+                    alt="Dashboard de reportes y métricas del E-Commerce.">
+                  <figcaption>Dashboard de reportes y métricas del E-Commerce.</figcaption>
+                </figure>
+              </template>
             </article>
             <article class="project github"><span class="project-icon">↗</span>
               <h3 data-i18n="proj.4.title">Más en GitHub</h3>
@@ -233,7 +250,8 @@
           <p data-i18n="proj.galleryLabel">Galería del proyecto</p>
           <h2 id="project-dialog-title"></h2>
         </div>
-        <button class="project-dialog-close" type="button" data-i18n-attr="aria-label:proj.close">×</button>
+        <button class="project-dialog-close" type="button" aria-label="Cerrar galería del proyecto"
+          data-i18n-attr="aria-label:proj.close">×</button>
       </div>
       <div class="project-dialog-body">
         <div class="project-gallery" id="project-gallery" aria-label="Imágenes del proyecto"
@@ -241,6 +259,14 @@
         <p class="project-gallery-empty" id="project-gallery-empty" data-i18n="proj.galleryEmpty">
           Todavía no hay imágenes agregadas para este proyecto.</p>
       </div>
+    </dialog>
+    <dialog class="project-image-dialog" id="project-image-dialog" aria-labelledby="project-image-caption">
+      <button class="project-image-close" type="button" aria-label="Cerrar imagen ampliada"
+        data-i18n-attr="aria-label:proj.closeImage">
+        <span aria-hidden="true">×</span>
+      </button>
+      <img class="project-image-full" id="project-image-full" alt="">
+      <p class="project-image-caption" id="project-image-caption"></p>
     </dialog>
     <footer>
       <div class="dots" aria-hidden="true"><i></i><i></i><i></i></div><span>© 2026 Sebastián Ré</span>
@@ -253,11 +279,33 @@
     const projectGallery = document.querySelector('#project-gallery');
     const projectGalleryEmpty = document.querySelector('#project-gallery-empty');
     const projectDialogClose = document.querySelector('.project-dialog-close');
+    const projectImageDialog = document.querySelector('#project-image-dialog');
+    const projectImageFull = document.querySelector('#project-image-full');
+    const projectImageCaption = document.querySelector('#project-image-caption');
+    const projectImageClose = document.querySelector('.project-image-close');
     let activeProject = null;
+    let activeImageTrigger = null;
 
     const closeProjectGallery = () => {
       activeProject?.setAttribute('aria-expanded', 'false');
       projectDialog.close();
+    };
+
+    const closeProjectImage = () => {
+      const trigger = activeImageTrigger;
+      projectImageDialog.close();
+      setTimeout(() => trigger?.focus(), 0);
+    };
+
+    const openProjectImage = (image, trigger) => {
+      const caption = image.closest('figure').querySelector('figcaption')?.textContent.trim();
+
+      projectImageFull.src = image.currentSrc || image.src;
+      projectImageFull.alt = image.alt;
+      projectImageCaption.textContent = caption || image.alt;
+      activeImageTrigger = trigger;
+      projectImageDialog.showModal();
+      projectImageClose.focus();
     };
 
     const openProjectGallery = (project) => {
@@ -266,6 +314,18 @@
       const hasImages = images.childElementCount > 0;
 
       projectGallery.replaceChildren(images);
+      projectGallery.querySelectorAll('figure img').forEach((image) => {
+        image.loading = 'lazy';
+        image.decoding = 'async';
+        const figure = image.closest('figure');
+
+        const trigger = document.createElement('button');
+        trigger.className = 'project-image-open';
+        trigger.type = 'button';
+        trigger.setAttribute('aria-haspopup', 'dialog');
+        trigger.append(image);
+        figure.prepend(trigger);
+      });
       projectGallery.hidden = !hasImages;
       projectGalleryEmpty.hidden = hasImages;
       projectDialogTitle.textContent = project.querySelector('h3').textContent.trim();
@@ -273,6 +333,12 @@
       project.setAttribute('aria-expanded', 'true');
       projectDialog.showModal();
     };
+
+    projectGallery.addEventListener('click', (event) => {
+      if (!(event.target instanceof Element)) return;
+      const trigger = event.target.closest('.project-image-open');
+      if (trigger) openProjectImage(trigger.querySelector('img'), trigger);
+    });
 
     document.querySelectorAll('.project[data-project-gallery]').forEach((project) => {
       project.addEventListener('click', () => openProjectGallery(project));
@@ -298,6 +364,21 @@
       activeProject?.setAttribute('aria-expanded', 'false');
       activeProject?.focus();
       activeProject = null;
+    });
+
+    projectImageClose.addEventListener('click', closeProjectImage);
+    projectImageDialog.addEventListener('click', (event) => {
+      if (event.target === projectImageDialog) closeProjectImage();
+    });
+    projectImageDialog.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        closeProjectImage();
+      }
+    });
+    projectImageDialog.addEventListener('close', () => {
+      activeImageTrigger = null;
+      projectImageFull.removeAttribute('src');
     });
 
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {

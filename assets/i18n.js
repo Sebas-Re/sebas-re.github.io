@@ -42,6 +42,7 @@
     'proj.galleryLabel': 'Project gallery',
     'proj.galleryEmpty': 'There are no images for this project yet.',
     'proj.close': 'Close project gallery',
+    'proj.closeImage': 'Close enlarged image',
     'tools.kicker': '03 / Toolbox',
     'tools.title': 'Defense, code and coffee to solve complex problems.',
     'cred.kicker': '04 / Continuous learning',
