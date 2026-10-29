@@ -52,3 +52,27 @@ test('los enlaces traducidos apuntan a archivos que existen', () => {
     assert.ok(existsSync(new URL(EN[key], root)), `no existe ${EN[key]} (${key})`);
   }
 });
+
+test('la preview social y el favicon apuntan a recursos existentes', () => {
+  const favicon = html.match(/<link rel="icon"[^>]*href="([^"]+)"/)?.[1];
+  const socialImage = html.match(/<meta property="og:image" content="([^"]+)"/)?.[1];
+
+  assert.ok(favicon, 'falta el favicon');
+  assert.ok(existsSync(new URL(favicon, root)), `no existe el favicon ${favicon}`);
+  assert.equal(socialImage, 'https://sebas-re.github.io/assets/Preview.png');
+  assert.ok(existsSync(new URL('../assets/Preview.png', import.meta.url)), 'no existe la imagen social');
+});
+
+test('la página incluye metadatos completos para compartir', () => {
+  const requiredMetadata = [
+    /<link rel="canonical" href="https:\/\/sebas-re\.github\.io\/">/,
+    /<meta property="og:type" content="website">/,
+    /<meta property="og:title" content="[^"]+">/,
+    /<meta property="og:description"[\s\S]*?content="[^"]+">/,
+    /<meta property="og:image" content="https:\/\/sebas-re\.github\.io\/assets\/Preview\.png">/,
+    /<meta name="twitter:card" content="summary_large_image">/,
+    /<meta name="twitter:image" content="https:\/\/sebas-re\.github\.io\/assets\/Preview\.png">/,
+  ];
+
+  for (const metadata of requiredMetadata) assert.match(html, metadata);
+});

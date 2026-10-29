@@ -7,6 +7,23 @@
   <meta name="description" data-i18n-attr="content:meta.desc"
     content="Portfolio de Sebastián Ré, analista SOC L1 en formación y desarrollador full-stack.">
   <title data-i18n="meta.title">Sebastián Ré | SOC & Software</title>
+  <link rel="canonical" href="https://sebas-re.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sebas-re.github.io/">
+  <meta property="og:title" content="Sebastián Ré | SOC &amp; Software">
+  <meta property="og:description"
+    content="Portfolio de Sebastián Ré, analista SOC L1 en formación y desarrollador full-stack.">
+  <meta property="og:image" content="https://sebas-re.github.io/assets/Preview.png">
+  <meta property="og:image:width" content="1384">
+  <meta property="og:image:height" content="892">
+  <meta property="og:image:alt" content="Vista previa del portfolio de Sebastián Ré">
+  <meta property="og:locale" content="es_AR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sebastián Ré | SOC &amp; Software">
+  <meta name="twitter:description"
+    content="Portfolio de Sebastián Ré, analista SOC L1 en formación y desarrollador full-stack.">
+  <meta name="twitter:image" content="https://sebas-re.github.io/assets/Preview.png">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -112,36 +129,36 @@
                 <figure>
                   <img src="assets/projects/ActiveDirectory/Indice.png"
                     alt="Indice del proyecto final de pentest sobre Active Directory">
-                  <figcaption>Indice del proyecto final de pentest sobre Active Directory.</figcaption>
+                  <figcaption data-i18n="proj.2.caption.1">Indice del proyecto final de pentest sobre Active Directory.</figcaption>
                 </figure>
                 <figure>
                   <img src="assets/projects/ActiveDirectory/Introduccion.png"
                     alt="Introducción del proyecto final de pentest sobre Active Directory">
-                  <figcaption>Introducción del reporte.</figcaption>
+                  <figcaption data-i18n="proj.2.caption.2">Introducción del reporte.</figcaption>
                 </figure>
 
                 <figure>
                   <img src="assets/projects/ActiveDirectory/InformeEjecutivo.png"
                     alt="Informe ejecutivo del proyecto final de pentest sobre Active Directory">
-                  <figcaption>Informe ejecutivo.</figcaption>
+                  <figcaption data-i18n="proj.2.caption.3">Informe ejecutivo.</figcaption>
                 </figure>
 
                 <figure>
                   <img src="assets/projects/ActiveDirectory/MatrizCriticidad.png"
                     alt="Matriz de criticidad del proyecto final de pentest sobre Active Directory">
-                  <figcaption>Matriz de criticidad del pentest realizado.</figcaption>
+                  <figcaption data-i18n="proj.2.caption.4">Matriz de criticidad del pentest realizado.</figcaption>
                 </figure>
 
                 <figure>
                   <img src="assets/projects/ActiveDirectory/Otroshallazgos.png"
                     alt="Otras hallazgos del proyecto final de pentest sobre Active Directory">
-                  <figcaption>Otros hallazgos durante el pentest.</figcaption>
+                  <figcaption data-i18n="proj.2.caption.5">Otros hallazgos durante el pentest.</figcaption>
                 </figure>
 
                 <figure>
                   <img src="assets/projects/ActiveDirectory/Conclusiones.png"
                     alt="Conclusiones del proyecto final de pentest sobre Active Directory">
-                  <figcaption>Conclusion del reporte.</figcaption>
+                  <figcaption data-i18n="proj.2.caption.6">Conclusion del reporte.</figcaption>
                 </figure>
               </template>
             </article>
@@ -314,6 +331,11 @@
       const hasImages = images.childElementCount > 0;
 
       projectGallery.replaceChildren(images);
+      if (document.documentElement.lang === 'en') {
+        projectGallery.querySelectorAll('figcaption[data-i18n]').forEach((caption) => {
+          caption.textContent = window.I18N_EN[caption.dataset.i18n];
+        });
+      }
       projectGallery.querySelectorAll('figure img').forEach((image) => {
         image.loading = 'lazy';
         image.decoding = 'async';
