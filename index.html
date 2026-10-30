@@ -164,7 +164,7 @@
               </template>
             </article>
             <article class="project" role="button" tabindex="0" aria-haspopup="dialog" aria-expanded="false"
-              data-project-gallery><span class="project-icon">{ }</span>
+              data-project-gallery data-project-showcase><span class="project-icon">{ }</span>
               <h3 data-i18n="proj.3.title">Desarrollo freelance</h3>
               <p data-i18n="proj.3.text">Catálogo digital web y bot de Discord en Python integrado con la API de OpenAI.
                 Trabajo con APIs,
@@ -272,10 +272,24 @@
           data-i18n-attr="aria-label:proj.close">×</button>
       </div>
       <div class="project-dialog-body">
-        <div class="project-gallery" id="project-gallery" aria-label="Imágenes del proyecto"
-          data-i18n-attr="aria-label:proj.galleryLabel" hidden></div>
-        <p class="project-gallery-empty" id="project-gallery-empty" data-i18n="proj.galleryEmpty">
-          Todavía no hay imágenes agregadas para este proyecto.</p>
+        <div class="project-showcase-tabs" aria-hidden="true" hidden>
+          <span class="is-current">01</span>
+          <span>02</span>
+          <span>03</span>
+        </div>
+        <div class="project-showcase-main">
+          <div class="project-gallery" id="project-gallery" aria-label="Imágenes del proyecto"
+            data-i18n-attr="aria-label:proj.galleryLabel" hidden></div>
+          <p class="project-gallery-empty" id="project-gallery-empty" data-i18n="proj.galleryEmpty">
+            Todavía no hay imágenes agregadas para este proyecto.</p>
+        </div>
+        <aside class="project-showcase-aside" aria-label="Detalles del proyecto"
+          data-i18n-attr="aria-label:proj.showcase.details" hidden>
+          <h3 data-i18n="proj.showcase.overview">Sobre el proyecto</h3>
+          <p id="project-showcase-description"></p>
+          <h4 data-i18n="proj.showcase.technologies">Tecnologías</h4>
+          <div class="project-showcase-technologies" id="project-showcase-technologies"></div>
+        </aside>
       </div>
     </dialog>
     <dialog class="project-image-dialog" id="project-image-dialog" aria-labelledby="project-image-caption">

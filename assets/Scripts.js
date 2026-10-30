@@ -2,6 +2,10 @@ const projectDialog = document.querySelector('#project-dialog');
 const projectDialogTitle = document.querySelector('#project-dialog-title');
 const projectGallery = document.querySelector('#project-gallery');
 const projectGalleryEmpty = document.querySelector('#project-gallery-empty');
+const projectShowcaseTabs = document.querySelector('.project-showcase-tabs');
+const projectShowcaseAside = document.querySelector('.project-showcase-aside');
+const projectShowcaseDescription = document.querySelector('#project-showcase-description');
+const projectShowcaseTechnologies = document.querySelector('#project-showcase-technologies');
 const projectDialogClose = document.querySelector('.project-dialog-close');
 const projectImageDialog = document.querySelector('#project-image-dialog');
 const projectImageFull = document.querySelector('#project-image-full');
@@ -36,7 +40,23 @@ const openProjectGallery = (project) => {
   const galleryTemplate = project.querySelector('.project-gallery');
   const images = galleryTemplate.content.cloneNode(true);
   const hasImages = images.childElementCount > 0;
+  const isShowcase = project.hasAttribute('data-project-showcase');
 
+  projectDialog.classList.toggle('is-showcase', isShowcase);
+  projectShowcaseTabs.hidden = !isShowcase;
+  projectShowcaseAside.hidden = !isShowcase;
+  projectShowcaseDescription.textContent = isShowcase
+    ? project.querySelector('p').textContent.trim()
+    : '';
+  projectShowcaseTechnologies.replaceChildren();
+  if (isShowcase) {
+    project.querySelectorAll('.tags .tag').forEach((tag) => {
+      const technology = document.createElement('span');
+      technology.className = 'project-showcase-tech';
+      technology.textContent = tag.textContent.trim();
+      projectShowcaseTechnologies.append(technology);
+    });
+  }
   projectGallery.replaceChildren(images);
   if (document.documentElement.lang === 'en') {
     projectGallery.querySelectorAll('figcaption[data-i18n]').forEach((caption) => {

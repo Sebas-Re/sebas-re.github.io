@@ -600,6 +600,166 @@ a {
     overscroll-behavior: contain
 }
 
+.project-showcase-main {
+    display: contents
+}
+
+.project-showcase-tabs[hidden],
+.project-showcase-aside[hidden] {
+    display: none
+}
+
+.project-dialog.is-showcase {
+    border-color: #363a3e;
+    background: linear-gradient(#282c2f, #202326);
+    color: #eef2f4
+}
+
+.project-dialog.is-showcase .project-dialog-header {
+    background: var(--mist);
+    color: var(--teal-ink);
+}
+
+.project-dialog.is-showcase .project-dialog-header p {
+    color: #397366;
+}
+
+.project-dialog.is-showcase .project-dialog-header h2 {
+    color: black
+}
+
+.project-dialog.is-showcase .project-dialog-close {
+    flex: 0 0 auto;
+    width: 42px;
+    height: 42px;
+    border: 1px solid #12352f59;
+    border-radius: 50%;
+    background: transparent;
+    color: inherit;
+    font: 400 1.6rem/1 "DM Sans", sans-serif;
+    cursor: pointer;
+    transition: background .2s, color .2s
+}
+
+.project-dialog.is-showcase .project-dialog-close:hover {
+    background: var(--teal-ink);
+    color: var(--mist)
+}
+
+.project-dialog.is-showcase .project-dialog-body {
+    display: grid;
+    grid-template-columns: 152px minmax(0, 1fr) 280px;
+    min-height: 0;
+    padding: 0;
+    overflow: hidden
+}
+
+.project-showcase-tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-height: 0;
+    padding: 12px;
+    overflow: auto;
+    border-right: 1px solid #363a3e;
+    background: var(--teal-ink);
+}
+
+.project-showcase-tabs span {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    min-height: 48px;
+    padding: 0 16px;
+    border-radius: 24px;
+    background: var(--mist);
+    color: var(--teal-ink);
+    font: 500 .9rem var(--head);
+    letter-spacing: .1em
+}
+
+.project-showcase-tabs .is-current {
+    background: #387c8f;
+    color: #8ce4ff
+}
+
+.project-dialog.is-showcase .project-showcase-main {
+    display: block;
+    min-width: 0;
+    min-height: 0;
+    overflow: auto;
+    padding: 20px;
+    background: var(--mist);
+    overscroll-behavior: contain
+}
+
+.project-dialog.is-showcase .project-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px
+}
+
+.project-dialog.is-showcase .project-gallery figure {
+    background: #2b2e31
+}
+
+.project-dialog.is-showcase .project-gallery figcaption {
+    color: #c1c9cf
+}
+
+.project-showcase-aside {
+    min-width: 0;
+    min-height: 0;
+    padding: 24px 20px;
+    overflow: auto;
+    border-left: 1px solid #363a3e;
+    background: #1c423dd6;
+    color: var(--mist);
+    overscroll-behavior: contain
+}
+
+.project-showcase-aside h3,
+.project-showcase-aside h4 {
+    margin: 0 0 12px;
+    color: var(--mist);
+    font: 500 1rem var(--head);
+    letter-spacing: .08em;
+    text-transform: uppercase
+}
+
+.project-showcase-aside h4 {
+    margin-top: 28px
+}
+
+.project-showcase-aside p {
+    margin: 0;
+    line-height: 1.65
+}
+
+.project-showcase-technologies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px
+}
+
+.project-showcase-tech {
+    padding: 6px 10px;
+    border: 1px solid #f4fff980;
+    background: #fffaf5eb;
+    color: var(--coral-ink);
+    border-radius: 999px;
+    font-size: .78rem
+}
+
+@media(max-width:1000px) and (min-width:721px) {
+    .project-dialog.is-showcase .project-dialog-body {
+        grid-template-columns: 112px minmax(0, 1fr) 220px
+    }
+
+    .project-dialog.is-showcase .project-gallery {
+        grid-template-columns: 1fr
+    }
+}
+
 .project-gallery {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -893,10 +1053,6 @@ footer {
     background: #ffffff40
 }
 
-.dots i:first-child {
-    background: #ffffffb3
-}
-
 .reveal {
     opacity: 0;
     transform: translateY(22px);
@@ -1043,6 +1199,42 @@ footer {
 
     .project-image-full {
         max-height: calc(100dvh - 132px)
+    }
+
+    .project-dialog.is-showcase .project-dialog-body {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: auto minmax(0, 1fr) auto;
+        overflow-y: auto
+    }
+
+    .project-showcase-tabs {
+        flex-direction: row;
+        grid-column: 1;
+        padding: 10px 12px;
+        border-right: 0;
+        border-bottom: 1px solid #363a3e
+    }
+
+    .project-showcase-tabs span {
+        justify-content: center;
+        min-width: 64px;
+        min-height: 40px;
+        padding: 0 12px
+    }
+
+    .project-dialog.is-showcase .project-showcase-main {
+        overflow: visible;
+        padding: 16px
+    }
+
+    .project-dialog.is-showcase .project-gallery {
+        grid-template-columns: 1fr
+    }
+
+    .project-showcase-aside {
+        border-top: 1px solid #363a3e;
+        border-left: 0
     }
 
     .contact-links {
