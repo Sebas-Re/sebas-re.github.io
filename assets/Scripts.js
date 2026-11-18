@@ -14,6 +14,53 @@ const projectImageClose = document.querySelector('.project-image-close');
 let activeProject = null;
 let activeImageTrigger = null;
 
+const translateTemplateText = (node) => {
+  const key = node.dataset.i18n;
+  return document.documentElement.lang === 'en' ? window.I18N_EN[key] : node.textContent.trim();
+};
+
+const renderProjectShowcaseSection = (project, sectionNumber) => {
+  const template = project.querySelector(`template[data-showcase-section="${sectionNumber}"]`);
+  if (!template) throw new Error(`Missing freelance showcase section ${sectionNumber}`);
+
+  const content = template.content.cloneNode(true);
+  const description = content.querySelector('[data-showcase-description]');
+  projectShowcaseDescription.textContent = translateTemplateText(description);
+
+  const technologies = [...content.querySelectorAll('[data-showcase-technologies] .tag')];
+  projectShowcaseTechnologies.replaceChildren(...technologies.map((tag) => {
+    const technology = document.createElement('span');
+    technology.className = 'project-showcase-tech';
+    technology.textContent = tag.textContent.trim();
+    return technology;
+  }));
+
+  const figures = [...content.querySelectorAll('[data-showcase-gallery] figure')];
+  projectGallery.replaceChildren(...figures);
+  projectGallery.querySelectorAll('figcaption[data-i18n]').forEach((caption) => {
+    caption.textContent = translateTemplateText(caption);
+  });
+  projectGallery.querySelectorAll('figure img').forEach((image) => {
+    image.loading = 'lazy';
+    image.decoding = 'async';
+    const figure = image.closest('figure');
+    const trigger = document.createElement('button');
+    trigger.className = 'project-image-open';
+    trigger.type = 'button';
+    trigger.setAttribute('aria-haspopup', 'dialog');
+    trigger.append(image);
+    figure.prepend(trigger);
+  });
+  projectGallery.hidden = figures.length === 0;
+  projectGalleryEmpty.hidden = figures.length > 0;
+
+  projectShowcaseTabs.querySelectorAll('[data-showcase-section]').forEach((tab) => {
+    const isCurrent = tab.dataset.showcaseSection === sectionNumber;
+    tab.classList.toggle('is-current', isCurrent);
+    tab.setAttribute('aria-pressed', String(isCurrent));
+  });
+};
+
 const closeProjectGallery = () => {
   activeProject?.setAttribute('aria-expanded', 'false');
   projectDialog.close();
@@ -37,51 +84,50 @@ const openProjectImage = (image, trigger) => {
 };
 
 const openProjectGallery = (project) => {
-  const galleryTemplate = project.querySelector('.project-gallery');
-  const images = galleryTemplate.content.cloneNode(true);
-  const hasImages = images.childElementCount > 0;
   const isShowcase = project.hasAttribute('data-project-showcase');
 
   projectDialog.classList.toggle('is-showcase', isShowcase);
   projectShowcaseTabs.hidden = !isShowcase;
   projectShowcaseAside.hidden = !isShowcase;
-  projectShowcaseDescription.textContent = isShowcase
-    ? project.querySelector('p').textContent.trim()
-    : '';
-  projectShowcaseTechnologies.replaceChildren();
   if (isShowcase) {
-    project.querySelectorAll('.tags .tag').forEach((tag) => {
-      const technology = document.createElement('span');
-      technology.className = 'project-showcase-tech';
-      technology.textContent = tag.textContent.trim();
-      projectShowcaseTechnologies.append(technology);
+    renderProjectShowcaseSection(project, '1');
+  } else {
+    const galleryTemplate = project.querySelector('.project-gallery');
+    const images = galleryTemplate.content.cloneNode(true);
+    const figures = [...images.querySelectorAll('figure')];
+    projectGallery.replaceChildren(...figures);
+    if (document.documentElement.lang === 'en') {
+      projectGallery.querySelectorAll('figcaption[data-i18n]').forEach((caption) => {
+        caption.textContent = translateTemplateText(caption);
+      });
+    }
+    projectGallery.querySelectorAll('figure img').forEach((image) => {
+      image.loading = 'lazy';
+      image.decoding = 'async';
+      const figure = image.closest('figure');
+      const trigger = document.createElement('button');
+      trigger.className = 'project-image-open';
+      trigger.type = 'button';
+      trigger.setAttribute('aria-haspopup', 'dialog');
+      trigger.append(image);
+      figure.prepend(trigger);
     });
+    projectGallery.hidden = figures.length === 0;
+    projectGalleryEmpty.hidden = figures.length > 0;
+    projectShowcaseDescription.textContent = '';
+    projectShowcaseTechnologies.replaceChildren();
   }
-  projectGallery.replaceChildren(images);
-  if (document.documentElement.lang === 'en') {
-    projectGallery.querySelectorAll('figcaption[data-i18n]').forEach((caption) => {
-      caption.textContent = window.I18N_EN[caption.dataset.i18n];
-    });
-  }
-  projectGallery.querySelectorAll('figure img').forEach((image) => {
-    image.loading = 'lazy';
-    image.decoding = 'async';
-    const figure = image.closest('figure');
-
-    const trigger = document.createElement('button');
-    trigger.className = 'project-image-open';
-    trigger.type = 'button';
-    trigger.setAttribute('aria-haspopup', 'dialog');
-    trigger.append(image);
-    figure.prepend(trigger);
-  });
-  projectGallery.hidden = !hasImages;
-  projectGalleryEmpty.hidden = hasImages;
   projectDialogTitle.textContent = project.querySelector('h3').textContent.trim();
   activeProject = project;
   project.setAttribute('aria-expanded', 'true');
   projectDialog.showModal();
 };
+
+projectShowcaseTabs.addEventListener('click', (event) => {
+  if (!(event.target instanceof Element)) return;
+  const tab = event.target.closest('[data-showcase-section]');
+  if (tab && activeProject) renderProjectShowcaseSection(activeProject, tab.dataset.showcaseSection);
+});
 
 projectGallery.addEventListener('click', (event) => {
   if (!(event.target instanceof Element)) return;

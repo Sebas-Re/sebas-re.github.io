@@ -665,22 +665,35 @@ a {
     background: var(--teal-ink);
 }
 
-.project-showcase-tabs span {
+.project-showcase-tabs button {
     display: flex;
     flex: 0 0 auto;
     align-items: center;
     min-height: 48px;
     padding: 0 16px;
+    border: 0;
     border-radius: 24px;
     background: var(--mist);
     color: var(--teal-ink);
     font: 500 .9rem var(--head);
-    letter-spacing: .1em
+    letter-spacing: .1em;
+    text-align: left;
+    cursor: pointer;
+    transition: background .2s, color .2s
 }
 
 .project-showcase-tabs .is-current {
     background: #387c8f;
     color: #8ce4ff
+}
+
+.project-showcase-tabs button:focus-visible {
+    outline: 3px solid #8ce4ff;
+    outline-offset: 3px
+}
+
+.project-showcase-tabs button:not(.is-current):hover {
+    background: #d7eee8
 }
 
 .project-dialog.is-showcase .project-showcase-main {
@@ -1216,7 +1229,7 @@ footer {
         border-bottom: 1px solid #363a3e
     }
 
-    .project-showcase-tabs span {
+    .project-showcase-tabs button {
         justify-content: center;
         min-width: 64px;
         min-height: 40px;

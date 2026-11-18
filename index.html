@@ -172,23 +172,53 @@
               <div class="tags"><span class="tag">Python</span><span class="tag">Java</span><span
                   class="tag">Full-Stack</span><span class="tag">C#</span></div>
               <span class="project-action" data-i18n="proj.viewGallery">Ver imágenes ↗</span>
-              <template class="project-gallery">
-                <figure>
-                  <img src="assets/projects/PcBoosterStore/PcBoosterStore1.png"
-                    alt="Catálogo E-Commerce web desarrollado en C#">
-                  <figcaption>Catálogo E-Commerce web desarrollado en C#.</figcaption>
-                </figure>
-                <figure>
-                  <img src="assets/projects/PcBoosterStore/PcBoosterStore2.png"
-                    alt="Dashboard de administración del E-Commerce.">
-                  <figcaption>Dashboard de administración del E-Commerce.</figcaption>
-                </figure>
-
-                <figure>
-                  <img src="assets/projects/PcBoosterStore/PcBoosterStore3.png"
-                    alt="Dashboard de reportes y métricas del E-Commerce.">
-                  <figcaption>Dashboard de reportes y métricas del E-Commerce.</figcaption>
-                </figure>
+              <template class="project-showcase-section" data-showcase-section="1">
+                <p data-showcase-description data-i18n="proj.showcase.project1.description">Catálogo E-Commerce Web creado en ASP.NET WebForms sobre .NET Framework 4.7.2, con interfaz en Bootstrap 5 y arquitectura en capas. Implementaciones de seguridad para evitar ataques comunes (SQLi, XSS, CSRF).</p>
+                <div data-showcase-technologies><span class="tag">C#</span><span class="tag">ASP.NET</span><span
+                    class="tag">Full-Stack</span></div>
+                <div data-showcase-gallery>
+                  <figure>
+                    <img src="assets/projects/PcBoosterStore/PcBoosterStore1.png"
+                      alt="Catálogo E-Commerce web desarrollado en C#">
+                    <figcaption data-i18n="proj.showcase.project1.caption1">Catálogo E-Commerce web desarrollado en C#.</figcaption>
+                  </figure>
+                  <figure>
+                    <img src="assets/projects/PcBoosterStore/PcBoosterStore2.png"
+                      alt="Dashboard de administración del E-Commerce.">
+                    <figcaption data-i18n="proj.showcase.project1.caption2">Dashboard de administración del E-Commerce.</figcaption>
+                  </figure>
+                  <figure>
+                    <img src="assets/projects/PcBoosterStore/PcBoosterStore3.png"
+                      alt="Dashboard de reportes y métricas del E-Commerce.">
+                    <figcaption data-i18n="proj.showcase.project1.caption3">Dashboard de reportes y métricas del E-Commerce.</figcaption>
+                  </figure>
+                </div>
+              </template>
+              <template class="project-showcase-section" data-showcase-section="2">
+                <p data-showcase-description data-i18n="proj.showcase.project2.description">Catálogo digital de un emprendimiento de cremas y aceites esenciales.</p>
+                <div data-showcase-technologies><span class="tag">HTML</span></div>
+                <div data-showcase-gallery>
+                  <figure>
+                    <img src="assets/projects/AromaterapiaLourdes/AromaterapiaLourdes1.png"
+                      alt="Página principal del catálogo de aromaterapia">
+                    <figcaption data-i18n="proj.showcase.project2.caption1">Página principal del catálogo de aromaterapia.</figcaption>
+                  </figure>
+                  <figure>
+                    <img src="assets/projects/AromaterapiaLourdes/AromaterapiaLourdes2.png"
+                      alt="Productos del catálogo de aromaterapia">
+                    <figcaption data-i18n="proj.showcase.project2.caption2">Productos del catálogo de aromaterapia.</figcaption>
+                  </figure>
+                  <figure>
+                    <img src="assets/projects/AromaterapiaLourdes/AromaterapiaLourdes3.png"
+                      alt="Detalle del catálogo de aromaterapia">
+                    <figcaption data-i18n="proj.showcase.project2.caption3">Detalle del catálogo de aromaterapia.</figcaption>
+                  </figure>
+                </div>
+              </template>
+              <template class="project-showcase-section" data-showcase-section="3">
+                <p data-showcase-description data-i18n="proj.showcase.project3.description">Bot de Discord que conecta con OpenAI mediante API. Funciones de lectura y escritura, generación de imágenes, traducción y transcripción de mensajes de voz mediante el modelo Whisper de OpenAI.</p>
+                <div data-showcase-technologies><span class="tag">Python</span><span class="tag">API</span></div>
+                <div data-showcase-gallery></div>
               </template>
             </article>
             <article class="project github"><span class="project-icon">↗</span>
@@ -272,12 +302,18 @@
           data-i18n-attr="aria-label:proj.close">×</button>
       </div>
       <div class="project-dialog-body">
-        <div class="project-showcase-tabs" aria-hidden="true" hidden>
-          <span class="is-current">01</span>
-          <span>02</span>
-          <span>03</span>
+        <div class="project-showcase-tabs" hidden>
+          <button class="is-current" type="button" aria-pressed="true" aria-controls="project-showcase-main"
+            aria-label="Mostrar proyecto 1" data-i18n-attr="aria-label:proj.showcase.select1"
+            data-showcase-section="1">01</button>
+          <button type="button" aria-pressed="false" aria-controls="project-showcase-main"
+            aria-label="Mostrar proyecto 2" data-i18n-attr="aria-label:proj.showcase.select2"
+            data-showcase-section="2">02</button>
+          <button type="button" aria-pressed="false" aria-controls="project-showcase-main"
+            aria-label="Mostrar proyecto 3" data-i18n-attr="aria-label:proj.showcase.select3"
+            data-showcase-section="3">03</button>
         </div>
-        <div class="project-showcase-main">
+        <div class="project-showcase-main" id="project-showcase-main">
           <div class="project-gallery" id="project-gallery" aria-label="Imágenes del proyecto"
             data-i18n-attr="aria-label:proj.galleryLabel" hidden></div>
           <p class="project-gallery-empty" id="project-gallery-empty" data-i18n="proj.galleryEmpty">
