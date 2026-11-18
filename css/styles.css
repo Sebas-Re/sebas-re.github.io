@@ -322,8 +322,10 @@ a {
     position: absolute;
     z-index: 0;
     top: var(--top, 10%);
-    --m: calc((100cqw - 1040px) / 2);
-    width: min(var(--w, 220px), calc(var(--m) + 10px));
+    --m: max(0px, calc((100cqw - 1040px) / 2));
+    --deco-gutter: 14px;
+    --deco-size: min(var(--w, 220px), calc(var(--m) - var(--deco-gutter)));
+    width: var(--deco-size);
     pointer-events: none;
     display: none
 }
@@ -336,11 +338,11 @@ a {
 }
 
 .deco-l {
-    left: calc(var(--m) - min(var(--w, 220px), calc(var(--m) + 10px)) - 14px)
+    left: max(var(--deco-gutter), calc(var(--m) - var(--deco-size)))
 }
 
 .deco-r {
-    right: calc(var(--m) - min(var(--w, 220px), calc(var(--m) + 10px)) - 14px)
+    right: max(var(--deco-gutter), calc(var(--m) - var(--deco-size)))
 }
 
 .deco.hang {
@@ -352,7 +354,7 @@ a {
     animation: swing 8s ease-in-out infinite
 }
 
-@media(min-width:1280px) {
+@media(min-width:1200px) {
     .deco {
         display: block
     }
