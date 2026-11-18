@@ -625,7 +625,7 @@ a {
 }
 
 .project-dialog.is-showcase .project-dialog-header h2 {
-    color: black
+    color: var(--teal-ink)
 }
 
 .project-dialog.is-showcase .project-dialog-close {
@@ -683,8 +683,8 @@ a {
 }
 
 .project-showcase-tabs .is-current {
-    background: #387c8f;
-    color: #8ce4ff
+    background: #397366;
+    color: #fff
 }
 
 .project-showcase-tabs button:focus-visible {
@@ -702,7 +702,7 @@ a {
     min-height: 0;
     overflow: auto;
     padding: 20px;
-    background: var(--mist);
+    background: #edf2eb;
     overscroll-behavior: contain
 }
 
@@ -712,11 +712,15 @@ a {
 }
 
 .project-dialog.is-showcase .project-gallery figure {
-    background: #2b2e31
+    overflow: hidden;
+    border: 1px solid #d5ded6;
+    background: #fff;
+    box-shadow: 0 8px 20px #12352f1a
 }
 
 .project-dialog.is-showcase .project-gallery figcaption {
-    color: #c1c9cf
+    background: #e4eee8;
+    color: var(--teal-ink)
 }
 
 .project-showcase-aside {
